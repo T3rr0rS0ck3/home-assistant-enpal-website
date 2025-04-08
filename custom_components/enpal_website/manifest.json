@@ -1,12 +1,9 @@
 {
   "domain": "enpal_website",
   "name": "Enpal Website",
-  "version": "1.0.1",
-  "config_flow": true,
-  "documentation": "https://example.com",
-  "dependencies": [],
-  "codeowners": [],
+  "version": "1.0.0",
+  "documentation": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website",
   "requirements": ["beautifulsoup4==4.12.2"],
-  "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website/issues"
+  "codeowners": ["@T3rr0rS0ck3"],
+  "config_flow": true
 }

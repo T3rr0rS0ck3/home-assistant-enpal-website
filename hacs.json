@@ -2,13 +2,6 @@
   "name": "Enpal Website",
   "render_readme": true,
   "description": "Scrapes Enpal inverter/battery data from local HTML and provides Home Assistant sensors.",
-  "authors": ["T3rr0rS0ck3"],
-  "documentation": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website",
-  "keywords": ["enpal", "solar", "custom-component"],
-  "category": "integration",
-  "domain": "enpal_website",
-  "codeowners": ["@T3rr0rS0ck3"],
-  "version": "1.0.0",
-  "config_flow": true,
-  "requirements": []
+  "domains": ["enpal_website"],
+  "country": "any"
 }

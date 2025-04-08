@@ -7,5 +7,6 @@
   "dependencies": [],
   "codeowners": [],
   "requirements": ["beautifulsoup4==4.12.2"],
-  "iot_class": "local_polling"
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website/issues"
 }

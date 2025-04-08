@@ -5,6 +5,7 @@
   "authors": ["T3rr0rS0ck3"],
   "documentation": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website",
   "keywords": ["enpal", "solar", "custom-component"],
+  "category": "integration",
   "domain": "enpal_website",
   "codeowners": ["@T3rr0rS0ck3"],
   "version": "1.0.0",

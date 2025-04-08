@@ -1,0 +1,11 @@
+{
+  "domain": "enpal_website",
+  "name": "Enpal Website",
+  "version": "1.0.1",
+  "config_flow": true,
+  "documentation": "https://example.com",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": ["beautifulsoup4==4.12.2"],
+  "iot_class": "local_polling"
+}

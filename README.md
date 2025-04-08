@@ -1,6 +1,6 @@
 # Enpal Website Integration for Home Assistant
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=home-assistant)]
+![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=home-assistant)
 
 This custom integration fetches and parses sensor data from a local Enpal inverter/battery HTML dashboard and exposes it as sensors in Home Assistant.
 

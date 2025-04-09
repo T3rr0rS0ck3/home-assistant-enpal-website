@@ -1,3 +1,4 @@
+
 from homeassistant.helpers.update_coordinator import CoordinatorEntity, DataUpdateCoordinator
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.entity import Entity
@@ -142,6 +143,36 @@ class EnpalWebsiteSensor(CoordinatorEntity, Entity):
         for (key, value, group) in self.coordinator.data:
             if key == self._key and group == self._group:
                 return detect_unit(value)
+        return None
+
+    @property
+    def state_class(self):
+        unit = self.native_unit_of_measurement
+        if unit in ["kWh", "Wh", "W", "V", "A", "%", "°C", "Hz"]:
+            return "measurement"
+        return None
+
+    @property
+    def device_class(self):
+        key = self._key.lower()
+        if "temperature" in key:
+            return "temperature"
+        if "voltage" in key:
+            return "voltage"
+        if "current" in key or "amper" in key:
+            return "current"
+        if "power" in key:
+            return "power"
+        if "energy" in key:
+            return "energy"
+        if "humidity" in key:
+            return "humidity"
+        if "battery" in key:
+            return "battery"
+        if "frequency" in key or "hz" in key:
+            return "frequency"
+        if "duration" in key:
+            return "duration"
         return None
 
     @property

@@ -2,6 +2,7 @@
 from homeassistant.helpers.update_coordinator import CoordinatorEntity, DataUpdateCoordinator
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.entity import Entity
+from homeassistant.components.sensor import SensorEntity
 from homeassistant.const import CONF_NAME, CONF_URL
 from homeassistant.core import HomeAssistant
 from homeassistant.config_entries import ConfigEntry
@@ -67,9 +68,11 @@ def parse_html(html, selected_groups):
                 key = columns[0].get_text(strip=True).replace(".", "_").replace(" ", "_")
                 value = columns[1].get_text(strip=True)
                 data.append((key, value, group))
+                _LOGGER.warning(f"Key: {key}, Value: {value}, Group: {group}")
     return data
 
 def detect_unit(value):
+    _LOGGER.warning(f"Detecting unit for value: {value}")
     if re.search(r"\d+\.?\d*\s*kWh", value):
         return "kWh"
     if re.search(r"\d+\.?\d*\s*Wh", value):
@@ -117,7 +120,7 @@ def detect_icon(key):
         return "mdi:gauge"
     return "mdi:information-outline"
 
-class EnpalWebsiteSensor(CoordinatorEntity, Entity):
+class EnpalWebsiteSensor(CoordinatorEntity, SensorEntity):
     def __init__(self, coordinator, key, group):
         super().__init__(coordinator)
         self._key = key
@@ -148,8 +151,22 @@ class EnpalWebsiteSensor(CoordinatorEntity, Entity):
     @property
     def state_class(self):
         unit = self.native_unit_of_measurement
-        if unit in ["kWh", "Wh", "W", "V", "A", "%", "°C", "Hz"]:
+        if unit in ["kWh", "Wh"]:
+            if self._key.endswith("_day"):
+                return "total"
+            if self._key.endswith("_lifetime"):
+                return "total_increasing"
+            return "total_increasing"
+        elif unit in ["W", "V", "A", "%", "°C", "Hz"]:
             return "measurement"
+        return None
+    
+    @property
+    def last_reset(self):
+        if self.state_class == "total":
+            # dynamisch: Mitternacht heute
+            now = datetime.now(timezone.utc)
+            return datetime.combine(now.date(), time.min, tzinfo=timezone.utc)
         return None
 
     @property

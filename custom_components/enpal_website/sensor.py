@@ -19,7 +19,7 @@ CONF_GROUPS = "groups"
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_entities):
     name = entry.data[CONF_NAME]
-    url = entry.data[CONF_URL]
+    url = entry.options.get(CONF_URL, entry.data.get(CONF_URL))
     scan_interval = entry.options.get(CONF_SCAN_INTERVAL, entry.data.get(CONF_SCAN_INTERVAL, 60))
     selected_groups = entry.options.get(CONF_GROUPS, [])
 

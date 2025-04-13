@@ -1,3 +1,4 @@
+
 import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant import config_entries
@@ -39,7 +40,7 @@ class EnpalWebsiteOptionsFlowHandler(config_entries.OptionsFlow):
         return self.async_show_form(
             step_id="init",
             data_schema=vol.Schema({
-                vol.Required(CONF_SCAN_INTERVAL, default=self.config_entry.options.get(CONF_SCAN_INTERVAL, 60)): int,
-                vol.Optional(CONF_GROUPS, default=self.config_entry.options.get(CONF_GROUPS, GROUP_OPTIONS)): cv.multi_select(GROUP_OPTIONS)
+                vol.Optional(CONF_URL, default=self.config_entry.data.get(CONF_URL, DEFAULT_URL)): str,
+                vol.Optional(CONF_SCAN_INTERVAL, default=self.config_entry.data.get(CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL)): int
             })
         )

@@ -30,6 +30,9 @@ This custom integration fetches and parses sensor data from a local Enpal invert
 4. Restart Home Assistant
 5. Add the integration via **Settings → Devices & Services → Add Integration**
 
+OR
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=T3rr0rS0ck3&repository=home-assistant-enpal-website&category=Integration)
 ---
 
 ## ⚙️ Configuration

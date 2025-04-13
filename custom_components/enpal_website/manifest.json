@@ -1,7 +1,7 @@
 {
   "domain": "enpal_website",
   "name": "Enpal Website",
-  "version": "1.0.3",
+  "version": "1.0.1",
   "documentation": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website",
   "requirements": [
     "beautifulsoup4==4.12.2"
@@ -10,5 +10,6 @@
     "@T3rr0rS0ck3"
   ],
   "config_flow": true,
-  "issue_tracker": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website/issues"
+  "issue_tracker": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website/issues",
+  "flow_version": 2
 }

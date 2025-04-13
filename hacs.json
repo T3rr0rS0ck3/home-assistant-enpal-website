@@ -1,7 +1,7 @@
 {
   "name": "Enpal Website",
-  "render_readme": true,
   "description": "Scrapes Enpal inverter/battery data from local HTML and provides Home Assistant sensors.",
-  "domains": ["enpal_website"],
-  "country": "DE"
+  "country": [
+    "DE"
+  ]
 }

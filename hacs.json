@@ -2,5 +2,6 @@
   "country": [
     "DE"
   ],
-  "name": "Enpal Website"
+  "name": "Enpal Website",
+  "homeassistant": "2023.11.0"
 }

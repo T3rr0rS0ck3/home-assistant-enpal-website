@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*.*.*'
+
 permissions:
   contents: write
 
@@ -15,6 +16,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Wichtig, um später den main-Branch verfügbar zu haben
 
       - name: Extract version from tag
         id: get_version
@@ -25,14 +28,6 @@ jobs:
       - name: Update manifest.json with tag version
         run: |
           sed -i 's/"version": *"[^"]*"/"version": "'"$VERSION"'"/' custom_components/enpal_website/manifest.json
-
-      - name: Commit and push version bump
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add custom_components/enpal_website/manifest.json
-          git commit -m "🔖 Bump version to $VERSION from tag"
-          git push
 
       - name: Zip component
         run: |
@@ -47,3 +42,19 @@ jobs:
           files: release/enpal_website.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit updated manifest.json to main branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Hole und schalte auf main um
+          git fetch origin main
+          git checkout main
+
+          # Kopiere die geänderte Datei aus dem Tag-Checkout in den main-Branch
+          cp custom_components/enpal_website/manifest.json ./custom_components/enpal_website/manifest.json
+
+          git add custom_components/enpal_website/manifest.json
+          git commit -m "🔖 Set version to $VERSION in manifest.json (post-release)"
+          git push origin main

@@ -1,8 +1,8 @@
+
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.typing import ConfigType
 from .const import DOMAIN
-from .config_flow import EnpalWebsiteOptionsFlowHandler
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     return True
@@ -15,6 +15,3 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     return await hass.config_entries.async_forward_entry_unload(entry, "sensor")
-
-def async_get_options_flow(config_entry):
-    return EnpalWebsiteOptionsFlowHandler(config_entry)

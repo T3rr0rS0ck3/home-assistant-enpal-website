@@ -16,6 +16,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Extract version from tag
+        id: get_version
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/v}"
+          echo "VERSION=$TAG_NAME" >> $GITHUB_ENV
+
+      - name: Update manifest.json with tag version
+        run: |
+          sed -i 's/"version": *"[^"]*"/"version": "'"$VERSION"'"/' custom_components/enpal_website/manifest.json
+
+      - name: Commit and push version bump
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add custom_components/enpal_website/manifest.json
+          git commit -m "🔖 Bump version to $VERSION from tag"
+          git push
+
       - name: Zip component
         run: |
           mkdir release

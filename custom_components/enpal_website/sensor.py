@@ -68,7 +68,7 @@ def parse_html(html, selected_groups):
                 key = columns[0].get_text(strip=True).replace(".", "_").replace(" ", "_")
                 value = columns[1].get_text(strip=True)
                 data.append((key, value, group))
-                _LOGGER.warning(f"Key: {key}, Value: {value}, Group: {group}")
+                _LOGGER.debug(f"Key: {key}, Value: {value}, Group: {group}")
     return data
 
 def detect_unit(value):

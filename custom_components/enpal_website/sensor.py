@@ -72,7 +72,7 @@ def parse_html(html, selected_groups):
     return data
 
 def detect_unit(value):
-    _LOGGER.warning(f"Detecting unit for value: {value}")
+    _LOGGER.debug(f"Detecting unit for value: {value}")
     if re.search(r"\d+\.?\d*\s*kWh", value):
         return "kWh"
     if re.search(r"\d+\.?\d*\s*Wh", value):
@@ -160,7 +160,7 @@ class EnpalWebsiteSensor(CoordinatorEntity, SensorEntity):
         elif unit in ["W", "V", "A", "%", "°C", "Hz"]:
             return "measurement"
         return None
-    
+
     @property
     def last_reset(self):
         if self.state_class == "total":

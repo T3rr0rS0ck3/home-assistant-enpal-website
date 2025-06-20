@@ -1,7 +1,7 @@
 {
   "domain": "enpal_website",
   "name": "Enpal Website",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "documentation": "https://github.com/T3rr0rS0ck3/home-assistant-enpal-website",
   "requirements": [
     "beautifulsoup4==4.12.2"
